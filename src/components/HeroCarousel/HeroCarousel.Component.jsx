@@ -1,35 +1,26 @@
 import React, { useState } from "react";
 import HeroSlider from "react-slick";
 
-// Import css files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-function NextArrow() {
-  return <></>;
-}
-
-function PreviousArrow() {
-  return <></>;
-}
+//Arrow components
+import { NextArrow, PrevArrow } from "./Arrows.Component";
 
 const HeroCarousel = () => {
   const [images, setImages] = useState([
-    "https://in.bmscdn.com/promotions/cms/creatives/1630432985528_incinemasthisfriday_shangchiandthelegendofthetenrings_webshowcase_1240x300.jpg",
+    "https://in.bmscdn.com/promotions/cms/creatives/1630474590730_mardkodardnhihota_1240x300_1sep.jpg",
     "https://in.bmscdn.com/promotions/cms/creatives/1629830049996_celebfiecruisewiththestarsrevised_webshowcase_1240x300_24aug.jpg",
-    "https://in.bmscdn.com/promotions/cms/creatives/1630045372422_bellbottomunderthestarspvrdriveinexperience_webshowcase_1240x300.jpg",
+    "https://in.bmscdn.com/promotions/cms/creatives/1628591224466_fnbgeneric.jpg",
   ]);
 
-  const settingsLg = {
+  const settingsLG = {
     arrows: true,
     autoplay: true,
     centerMode: true,
-    centerPadding: "100px",
+    centerPadding: "20px",
     slidesToShow: 1,
     infinite: true,
-    slidesToScroll: 1,
+    slideToScroll: 1,
     nextArrow: <NextArrow />,
-    prevArrow: <PreviousArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   const settings = {
@@ -37,12 +28,41 @@ const HeroCarousel = () => {
     slidesToShow: 1,
     infinite: true,
     speed: 500,
-    slidesToScroll: 1,
+    slideToScroll: 1,
     nextArrow: <NextArrow />,
-    prevArrow: <PreviousArrow />,
+    prevArrow: <PrevArrow />,
   };
 
-  return <></>;
+  return (
+    <>
+      <div className="lg:hidden">
+        <HeroSlider {...settings}>
+          {images.map((image) => (
+            <div className="w-full h-56 md:h-80 py-3">
+              <img
+                src={image}
+                alt="Hero Banner"
+                className="w-full h-full rounded-md object-center"
+              />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+      <div className="hidden lg:block">
+        <HeroSlider {...settingsLG}>
+          {images.map((image) => (
+            <div className="w-full h-96 px-2 py-3">
+              <img
+                src={image}
+                alt="Hero Banner"
+                className="w-full h-full rounded-md object-center"
+              />
+            </div>
+          ))}
+        </HeroSlider>
+      </div>
+    </>
+  );
 };
 
 export default HeroCarousel;
